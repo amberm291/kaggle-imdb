@@ -1,5 +1,6 @@
 import csv
-
+import numpy as np
+import pickle
 input_file = csv.DictReader(open("movie_metadata.csv"))
 
 def vector_generator(attr_name):
@@ -15,8 +16,10 @@ def vector_generator(attr_name):
                 genre_idx[str] = idx
                 idx = idx + 1
 
-    print(genre_idx)
+    return (genre_idx)
 
-vector_generator(attr_name="genres")
+#vector_generator(attr_name="genres")
+pickle.dump(vector_generator(attr_name="genres"), open("save_genres.p", "wb"),protocol=2)
 input_file = csv.DictReader(open("movie_metadata.csv"))
-vector_generator(attr_name="plot_keywords")
+pickle.dump( vector_generator(attr_name="plot_keywords"), open("save_plot_keywords.p", "wb"),protocol=2)
+#vector_generator(attr_name="plot_keywords")
